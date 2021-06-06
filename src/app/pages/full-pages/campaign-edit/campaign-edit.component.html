@@ -112,11 +112,28 @@
                 <button type="button" class="btn btn-raised btn-raised btn-warning mr-1"  (click)="goBack()">
                   <i class="ft-x"></i> Annuler
                 </button>
+                <button type="button" *ngIf="!isValidated()" class="btn btn-raised btn-raised btn-info  mr-1"  (click)="search()">
+                  <i class="fa fa-search"></i> Rechercher
+                </button>
                 <button type="button" class="btn btn-raised btn-raised btn-primary"  (click)="save()">
                   <i class="fa fa-check-square-o"></i> Enregistrer
                 </button>
               </div>
             </form>
+            <div *ngIf="searched || form.value.state === 'VALIDATED'">
+              <div *ngFor="let town of form.value.towns">
+                <h2>{{town.city}}</h2>
+                <div *ngFor="let type of form.value.types">
+                  <h3>&nbsp;&nbsp;&nbsp;{{type.label}}</h3>
+                  <ul>
+                    <li *ngFor="let business of getIndex(town.id, type.id)">{{business.name}}</li>
+                  </ul>
+                  <div *ngIf="apiLoaded | async">
+                    <google-map></google-map>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

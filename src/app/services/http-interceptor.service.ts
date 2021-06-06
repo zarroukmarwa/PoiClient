@@ -19,8 +19,8 @@ export class HttpInterceptorService implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
           this.userService.setToken("");
-          if (this.router.url !== "pages/login") {
-            this.router.navigate(["pages/login"]);
+          if (this.router.url !== "login") {
+            this.router.navigate(["login"]);
           }
         }
         return throwError("401");

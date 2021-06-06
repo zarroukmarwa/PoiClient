@@ -28,8 +28,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CampaignStatePipe } from "../../shared/pipes/campaign-state.pipe";
 import { TagInputModule } from 'ngx-chips';
 import { CampaignRealizationComponent } from './campaign-realization/campaign-realization.component';
-import { ProductEditComponent } from './product-edit/product-edit.component';
-import { CustomerEditComponent } from './customer-edit/customer-edit.component';
+import { GoogleMap, GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
     imports: [
@@ -43,7 +42,8 @@ import { CustomerEditComponent } from './customer-edit/customer-edit.component';
         NgxDatatableModule,
         TagInputModule,
         NgbModule,
-        NgImageSliderModule
+        NgImageSliderModule,
+        GoogleMapsModule
     ],
     declarations: [       
         GalleryPageComponent,
@@ -61,9 +61,7 @@ import { CustomerEditComponent } from './customer-edit/customer-edit.component';
         CustomersComponent,
         UsersComponent,
         CampaignStatePipe,
-        CampaignRealizationComponent,
-        ProductEditComponent,
-        CustomerEditComponent
+        CampaignRealizationComponent
     ]
 })
 export class FullPagesModule { }

@@ -4,17 +4,23 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-import { EMPTY, forkJoin, Observable } from 'rxjs';
+import { forkJoin, Observable, of } from 'rxjs';
 import { BusinessType } from '../../../entities/businessType';
 import { Product } from '../../../entities/product';
 import { Customer } from '../../../entities/customer';
-import { Campaign } from '../../../entities/campaign';
+import { Campaign, CampaignState } from '../../../entities/campaign';
 import { Town } from '../../../entities/town';
 import { BusinessTypeService } from '../../../services/business-type.service';
 import { CampaignService } from '../../../services/campaign.service';
 import { TownService } from '../../../services/town.service';
 import { ProductService } from 'app/services/product.service';
 import { CustomerService } from 'app/services/customer.service';
+import { BusinessService } from 'app/services/business.service';
+import { types } from 'util';
+import { HttpClient } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators';
+import { Business } from 'app/entities/business';
+import { CampaignStatePipe } from 'app/shared/pipes/campaign-state.pipe';
 
 
 @Component({
@@ -27,21 +33,29 @@ export class CampaignEditComponent implements OnInit {
 
   public products: Array<Product> = [];
   public customers: Array<Customer> = [];
+  private foundBusinesses: Array<any> = [];
+  private savedBusinesses: Array<any> = [];
 
   constructor(private businessTypeService: BusinessTypeService,
     private townService: TownService,
     private campaignService: CampaignService,
     private productService: ProductService,
     private customerService: CustomerService,
-
+    private businessService: BusinessService,
     private route: ActivatedRoute,
     private datePipe: DatePipe,
     private location: Location,
     private toastr: ToastrService,
-    private router: Router) {
+    private router: Router,
+    private httpClient: HttpClient) {
     this.route.params.subscribe((params) => {
       this.id = params.id ? parseInt(params.id) : undefined;
-    })
+    });
+    this.apiLoaded = this.httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE', 'callback')
+      .pipe(
+        map(() => true),
+        catchError(() => of(false)),
+      );
   }
 
   public id?: number;
@@ -51,13 +65,18 @@ export class CampaignEditComponent implements OnInit {
   public customer: Array<Customer> = [];
   public form: FormGroup;
 
+  public searchResult: any = {};
+  public searched: boolean = false;
+  apiLoaded: Observable<boolean>;
+  public savedResults: any = {};
+
   ngOnInit(): void {
     this.form = new FormGroup({
       id: new FormControl(this.id),
       label: new FormControl("", Validators.required),
       startDate: new FormControl("", Validators.required),
       endDate: new FormControl("", Validators.required),
-      state: new FormControl({ value: "PROVISORY"}),
+      state: new FormControl({ value: "PROVISORY" }),
       customer: new FormControl(),
       product: new FormControl(),
       description: new FormControl(""),
@@ -87,9 +106,20 @@ export class CampaignEditComponent implements OnInit {
         const endDate = this.datePipe.transform(new Date(response5.data.endDate), "yyyy-MM-dd");
         customer = this.customers.find(c => c.id === customer.id);
         product = this.products.find(c => c.id === product.id);
-        this.form.setValue({ id, label, startDate, state, customer, product, description,towns, types, endDate });
+        this.form.setValue({ id, label, startDate, state, customer, product, description, towns, types, endDate });
+        this.savedBusinesses = response5.data.businesses;
+        this.buildBusinessIndex();
       }
     });
+  }
+
+  private buildBusinessIndex() {
+    this.savedResults = {};
+    for(const business of this.savedBusinesses.filter(b => !!b.town && !!b.type)) {
+      this.savedResults[business.town.id] = this.savedResults[business.town.id] || {};
+      this.savedResults[business.town.id][business.type.id] = this.savedResults[business.town.id][business.type.id] || [];
+      this.savedResults[business.town.id][business.type.id].push(business);
+    }
   }
 
 
@@ -101,7 +131,9 @@ export class CampaignEditComponent implements OnInit {
 
   public save() {
     const campaign: Campaign = this.form.value;
-    this.toastr.success
+    if (campaign.state === CampaignState.VALIDATED) {
+      campaign.businesses = this.foundBusinesses;
+    }
     this.campaignService.save(campaign).subscribe((response: any) => {
       this.toastr.success("Votre campagne a été sauvegardée avec succés !", "Très bien !", { positionClass: "toast-top-center" });
       if (!this.id) {
@@ -114,6 +146,46 @@ export class CampaignEditComponent implements OnInit {
 
   public goBack() {
     this.router.navigate(["pages/campaigns"]);
+  }
+
+  public search() {
+    this.searchResult = {};
+    const { types, towns } = this.form.value;
+    for (const town of towns) {
+      const { lng: longitude, lat: latitude } = town;
+      for (const businessType of types) {
+        const type = businessType.mapCode;
+        this.businessService.nearbySearch(latitude, longitude, type).subscribe((response: any) => {
+          this.searchResult[town.id] = {};
+          this.searchResult[town.id][businessType.id] = response.results;
+          this.foundBusinesses.push.apply(this.foundBusinesses, response.results.map(r => {
+            return <Business>{
+              placeId: r.place_id,
+              mapCode: r.place_id,
+              type: businessType,
+              vicinity: r.vicinity,
+              lat: r.geometry.location.lat,
+              lng: r.geometry.location.lng,
+              name: r.name,
+              town: town
+            }
+          }));
+        });
+        this.searched = true;
+      }
+    }
+  }
+
+  public getIndex(townId, typeId) {
+    let index = this.searchResult;
+    if (this.form.value.state === CampaignState.VALIDATED) {
+      index = this.savedResults;
+    }
+    return index[townId][typeId] || [];
+  }
+
+  public isValidated() {
+    return this.form.value.state === CampaignState.VALIDATED;
   }
 
 }

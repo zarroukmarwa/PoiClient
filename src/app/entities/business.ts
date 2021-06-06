@@ -1,11 +1,13 @@
 import { BusinessType } from "./businessType";
-import { Campaign } from "./campaign";
+import { Town } from "./town";
 
 export class Business {
 
    public id: number = 0;
 
    public name: string = "";
+
+   public placeId: string = "";
 
    public mapCode: string = "";
 
@@ -16,5 +18,7 @@ export class Business {
    public vicinity: number = 0;
 
    public type?: BusinessType;
+
+   public town?: Town;
 
 }
