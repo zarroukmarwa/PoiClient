@@ -1,0 +1,45 @@
+.badge{
+    display: inline-block;
+    padding: .4rem .66666667rem;
+    font-size: 85%;
+    font-weight: 500;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+
+.btn-PROVISORY{
+    background-color: #efdeff!important;
+    color: #975aff!important;
+    border-color: #efdeff;
+}
+
+.btn-IN_PROGRESS{
+    background-color: #fee8dc!important;
+    color: #f55252!important;
+    border-color: #fee8dc;
+}
+
+.btn-REALISED{
+    background-color: #d5f1fd!important;
+    color: #2f8be6!important;
+    border-color: #d5f1fd;
+}
+
+.btn-VALIDATED{
+    background-color: #e0fbda!important;
+    color: #40c057!important;
+    border-color: #e0fbda;
+}
+
+.table {  
+  th,
+  td {
+    padding: 1.15rem 2rem;
+    vertical-align: middle;
+  }
+  
+}

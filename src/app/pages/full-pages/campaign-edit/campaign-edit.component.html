@@ -1,0 +1,129 @@
+<section id="basic-form-layouts">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="content-header">Campagne Paublicitaire</div>
+    </div>
+  </div>
+  <div class="row text-left">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title" id="basic-layout-form">Nouvelle Campagne</h4>
+          <p class="mb-0">Merci de remplir le formulaire soigneusement.</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form [formGroup]="form">
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-user"></i> Information Generale</h4>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="libelle">Libelle</label>
+                      <input type="text" id="libelle" class="form-control" name="libelle" formControlName="label" >
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="startDate">Date Début</label>
+                      <input type="date" id="startDate" class="form-control" name="startDate" formControlName="startDate">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="endDate">Date Fin</label>
+                      <input type="date" id="endDate" class="form-control" name="endDate" formControlName="endDate">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="customer">Client</label>
+                      <select id="customer" name="customer" class="form-control"  formControlName="customer"> 
+                        <option selected value="0">-- Selectionner le client --</option>
+                        <option *ngFor="let customer of customers" [ngValue]="customer">{{customer.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="product">Produit</label>
+                      <select id="product" name="product" class="form-control"  formControlName="product"  [(ngModel)]="product.label"> 
+                        <option selected value="0">-- Selectionner un produit --</option>
+                        <option *ngFor="let product of products" [ngValue]="product">{{product.label}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="state">Etat</label>
+                      <select id="state" name="state" class="form-control"  formControlName="state" > 
+                        <option value="PROVISORY">Provisoire</option>
+                        <option value="VALIDATED">Validée</option>
+                        <option value="REALISED">Réalisée</option>
+                        <option value="IN_PROGRESS">En cours</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                
+
+                <h4 class="form-section"><i class="ft-file-text"></i> Détail de la campagne</h4>
+
+                
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="city">Ville</label>
+
+                     <tag-input [onlyFromAutocomplete]="true" [placeholder]="'autre ville'" [identifyBy]="'id'" [displayBy]="'city'"
+                                    [secondaryPlaceholder]="'Ajouter une ville'" formControlName="towns"
+                                    (onTextChange)="onTownsTextChange($event)">
+                                    <tag-input-dropdown [identifyBy]="'id'" [displayBy]="'city'"
+                                        [showDropdownIfEmpty]="true" [autocompleteItems]="towns">
+                                    </tag-input-dropdown>
+                                </tag-input>
+                      
+                    
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="businessTypes">Type de Commerce</label>
+                      <tag-input [onlyFromAutocomplete]="true" [placeholder]="'autre type'" [identifyBy]="'id'" [displayBy]="'label'"
+                          [secondaryPlaceholder]="'Ajouter un type'" formControlName="types">
+                          <tag-input-dropdown [identifyBy]="'id'" [displayBy]="'label'"
+                              [showDropdownIfEmpty]="true" [autocompleteItems]="businessTypes">
+                          </tag-input-dropdown>
+                      </tag-input>
+                    </div>
+                  </div>                  
+                </div>
+
+                <div class="form-group">
+                  <label for="projectinput8">Descritopn</label>
+                  <textarea id="projectinput8" rows="5" class="form-control" name="descritopn"></textarea>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-raised btn-raised btn-warning mr-1"  (click)="goBack()">
+                  <i class="ft-x"></i> Annuler
+                </button>
+                <button type="button" class="btn btn-raised btn-raised btn-primary"  (click)="save()">
+                  <i class="fa fa-check-square-o"></i> Enregistrer
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</section>

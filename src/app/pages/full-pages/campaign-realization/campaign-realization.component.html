@@ -1,0 +1,59 @@
+<section id="ng-tables">
+  <div class="row text-left">
+    <div class="col-12">
+      <div class="content-header" *ngIf="campaign">Réalisation de la campagne <span
+          style="font-weight: bold;font-style:italic;">{{campaign.label}}</span></div>
+    </div>
+  </div>
+  <div class="row text-left">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-body">
+            <div class="action-buttons mt-2 text-right">
+              <a class="btn btn-raised gradient-blackberry py-2 px-4 white mr-2" (click)="exportPPT()">Exporter</a>
+            </div>
+            <div class="col-md-12" *ngFor="let type of types">
+              <h2>{{type.label | titlecase}}</h2>
+              <table class="table table-striped">
+                <thead>
+                  <th>Commerce</th>
+                  <th>Visité</th>
+                  <th>Medias</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let business of type.businesses">
+                    <td>{{business.name}}</td>
+                    <td>
+                      <input type="checkbox" [checked]="index[business.id].visited"
+                        (click)="toggleVisited(business.id)" />
+                    </td>
+                    <td>
+                      <ng-container *ngIf="index[business.id].visited">
+                        <span style="font-style: italic;cursor: pointer;"
+                          (click)="hiddenGalleries[business.id]=!hiddenGalleries[business.id]">
+                          <u>
+                            {{index[business.id].medias.length}} media(s) uploadé(s)
+                          </u>
+                        </span>
+                        <div *ngIf="!hiddenGalleries[business.id] && index[business.id].medias.length"
+                          class="col-md-12">
+                          <ng-image-slider [imagePopup]="true " #nav [images]="mediasByBusiness[business.id]"
+                            [infinite]="false" [autoSlide]="1" [imageSize]="{width: '25%', height: 200}" slideImage="1">
+                          </ng-image-slider>
+                        </div>
+                        <div>
+                          <input type="file" (change)="handleFileInput($event.target.files, business.id)" />
+                        </div>
+                      </ng-container>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

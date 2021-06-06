@@ -1,0 +1,59 @@
+<!--table starts-->
+<section id="ng-tables">
+  <div class="row text-left">
+    <div class="col-12">
+      <div class="content-header">Liste des campagnes</div>
+    </div>
+  </div>
+  <div class="row text-left">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-body">
+          <div class="action-buttons mt-2 text-right">
+                <a class="btn btn-raised gradient-blackberry py-2 px-4 white mr-2"  (click)="addCampaign()">Nouvelle campagne</a>
+		   </div>
+             <table class="table table-striped" id="">
+              <thead class=" text-primary">
+                <tr>
+                  <th>Label</th>
+                  <th>Date de début</th>
+                  <th>Etat</th>
+                  <th class=" text-center"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let campaign of campaigns">
+                  <td>{{campaign.label}}</td>
+                  <td>{{campaign.startDate | date : 'dd-MM-yyyy'}}</td>
+                  <td> <span class="badge btn-round btn-{{campaign.state}}">{{campaign.state | campaignState}}</span></td>
+                  <td class=" text-center">
+                    <i class="fa fa-edit" style="cursor: pointer; margin-right:10px" aria-hidden="true" title="éditer" (click)="editCampaign(campaign.id)"></i> 
+                    <i class="fa fa-trash" style="cursor: pointer; margin-right:10px" aria-hidden="true" title="supprimer" (click)="removeCampaign(campaign.id)"></i>
+                    <i *ngIf="campaign.state === 'VALIDATED'" class="ft-award" style="cursor: pointer;" aria-hidden="true" title="réaliser" (click)="realizeCampaign(campaign.id)"></i>
+                  </tr>
+              </tbody>
+            </table>          
+            
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item ng-star-inserted">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span class="ng-star-inserted">«</span>
+                  </a>
+                </li>
+                <li class="page-item ng-star-inserted" *ngFor="let item of [].constructor(pagesCount); let i = index"><a class="page-link ng-star-inserted" href="#" >{{i + 1}}</a></li>
+                <li class="page-item ng-star-inserted">
+                  <a class="page-link ng-star-inserted" href="#" aria-label="Next">
+                    <span class="ng-star-inserted">»</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--table ends-->
