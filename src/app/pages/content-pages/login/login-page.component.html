@@ -25,29 +25,22 @@
                     Bienvenue, Sur notre plateforme.
                   </p>
                     <form [formGroup]="regularForm" novalidate>                                        
-                      <small class="form-text text-muted danger" > This is required!</small>
+                      <small class="form-text text-muted danger" > Champ Obligatoire!</small>
                       <input type="text"  class="form-control mb-3" placeholder="Login" id="login" formControlName="login" required />
-                      <small class="form-text text-muted danger" > This is required!</small>
+                      <small class="form-text text-muted danger" > Champ Obligatoire!</small>
                       <input type="password"  class="form-control mb-3" placeholder="Password" id="password" formControlName="password" required/>
                       
                       <div class="d-flex justify-content-between mt-2">
                         <div class="remember-me">
-                          <div
-                            class="custom-control custom-checkbox custom-control-inline mb-3"
-                          >
-                            <input
-                              type="checkbox" id="customCheckboxInline1" name="customCheckboxInline1"  class="custom-control-input"
-                            />
-                            <label  class="custom-control-label" for="customCheckboxInline1" >
-                              Remember Me
-                            </label>
+                          <div class="custom-control custom-checkbox custom-control-inline mb-3"  >
+                            
                           </div>
                         </div>
                         <div class="forgot-password-option">
                           <a
                             [routerLink]="['/pages/forgotpassword']"
                             class="text-decoration-none text-primary"
-                            >Forgot Password ?</a
+                            >Mot de passe oublié ?</a
                           >
                         </div>
                       </div>
