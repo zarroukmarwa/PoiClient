@@ -22,6 +22,8 @@ import { KnowledgeBaseComponent } from './knowledge-base/knowledge-base.componen
 import { CampaignsComponent } from './campaigns/campaigns.component';
 import { CampaignEditComponent } from './campaign-edit/campaign-edit.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
+
 import { CustomersComponent } from './customers/customers.component';
 import { UsersComponent } from './users/users.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
@@ -29,6 +31,7 @@ import { CampaignStatePipe } from "../../shared/pipes/campaign-state.pipe";
 import { TagInputModule } from 'ngx-chips';
 import { CampaignRealizationComponent } from './campaign-realization/campaign-realization.component';
 import { GoogleMap, GoogleMapsModule } from '@angular/google-maps';
+import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 
 @NgModule({
     imports: [
@@ -58,7 +61,9 @@ import { GoogleMap, GoogleMapsModule } from '@angular/google-maps';
         CampaignsComponent,
         CampaignEditComponent,
         ProductsComponent,
+        ProductEditComponent,
         CustomersComponent,
+        CustomerEditComponent,
         UsersComponent,
         CampaignStatePipe,
         CampaignRealizationComponent

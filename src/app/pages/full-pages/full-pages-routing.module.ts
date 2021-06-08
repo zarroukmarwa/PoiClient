@@ -15,6 +15,8 @@ import { CampaignEditComponent } from "./campaign-edit/campaign-edit.component";
 import { ProductsComponent } from "./products/products.component";
 import { CustomersComponent } from "./customers/customers.component";
 import { CampaignRealizationComponent } from './campaign-realization/campaign-realization.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
+import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 
 
 const routes: Routes = [
@@ -45,13 +47,17 @@ const routes: Routes = [
           title: 'customers'
         }
       },
+      { path: "customer", component: CustomerEditComponent },
+      { path: "customer/:id", component: CustomerEditComponent },
       {
         path: 'products',
         component: ProductsComponent,
         data: {
           title: 'products'
         }
-      },       
+      }, 
+      { path: "product", component: ProductEditComponent },
+      { path: "product/:id", component: ProductEditComponent },
       {
         path: 'gallery',
         component: GalleryPageComponent,

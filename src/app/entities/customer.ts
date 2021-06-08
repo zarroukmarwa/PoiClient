@@ -1,4 +1,5 @@
 import {Campaign} from './campaign';
+import User from './user';
 
 export class Customer {
    id: number = 0;
@@ -7,6 +8,6 @@ export class Customer {
    adress :string ;
    email : string
    campaigns: Campaign[];
-
+   user: User;
    
 }

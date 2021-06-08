@@ -4,9 +4,9 @@ import { RouteInfo } from './sidebar.metadata';
 export const ROUTES: RouteInfo[] = [
 
     { path: '/dashboard/dashboard1', title: 'Dashboard', icon: 'ft-home', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []},
-    { path: '/pages/campaigns', title: 'campaigns', icon: 'ft-droplet', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-    { path: '/pages/products', title: 'products', icon: 'ft-droplet', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-    { path: '/pages/customers', title: 'customers', icon: 'ft-droplet', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+    { path: '/pages/campaigns', title: 'Campagnes', icon: 'fa fa-book', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+    { path: '/pages/products', title: 'Produits', icon: 'fa fa-list-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+    { path: '/pages/customers', title: 'Clients', icon: 'fa fa-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
     {
         path: '', title: 'Pages', icon: 'ft-copy', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
         submenu: [

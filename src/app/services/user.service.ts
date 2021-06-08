@@ -41,4 +41,7 @@ export class UserService {
       this.user = response.data;
     });
   }
+  public findAll() {
+    return this.httpClient.get(`${environment.apiBase}/user`);
+  }
 }
