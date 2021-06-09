@@ -20,7 +20,6 @@
                   <th>Phone</th>
                   <th>Adresse</th>
                   <th>Email</th>
-                  <th>responsable</th>
                   <th class=" text-center"></th>
                 </tr>
               </thead>
@@ -30,8 +29,7 @@
                   <td>{{customer.phone}}</td>
                   <td>{{customer.adress}}</td>
                   <td>{{customer.email}}</td>
-                  <td>{{customer.user}}</td>
-                  <td class=" text-center"><i class="fa fa-edit" style="cursor: pointer; margin-right:10px" aria-hidden="true" title="éditer" (click)="editCostomer(customer.id)"></i> <i class="fa fa-trash" style="cursor: pointer;" aria-hidden="true" title="supprimer" (click)="removeCostomer(customer.id)"></i></td>
+                  <td class=" text-center"><i class="fa fa-edit" style="cursor: pointer; margin-right:10px" aria-hidden="true" title="éditer" (click)="editCustomer(customer.id)"></i> <i class="fa fa-trash" style="cursor: pointer;" aria-hidden="true" title="supprimer" (click)="removeCustomer(customer.id)"></i></td>
                 </tr>
               </tbody>
             </table>          

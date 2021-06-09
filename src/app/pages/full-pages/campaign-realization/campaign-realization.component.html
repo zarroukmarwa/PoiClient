@@ -1,58 +1,85 @@
 <section id="ng-tables">
   <div class="row text-left">
-    <div class="col-12">
-      <div class="content-header" *ngIf="campaign">Réalisation de la campagne <span
+    <div class="col-10">
+     <div class="content-header" *ngIf="campaign">Réalisation de la campagne <span
           style="font-weight: bold;font-style:italic;">{{campaign.label}}</span></div>
     </div>
+    <div class="col-2">
+      <a class="btn btn-raised gradient-blackberry py-2 px-4 white mr-2" (click)="exportPPT()">Exporter</a>
+     </div>
   </div>
   <div class="row text-left">
     <div class="col-12">
-      <div class="card">
-        <div class="card-content">
-          <div class="card-body">
-            <div class="action-buttons mt-2 text-right">
-              <a class="btn btn-raised gradient-blackberry py-2 px-4 white mr-2" (click)="exportPPT()">Exporter</a>
+      <div class="col-md-12">
+              
+         
+        <div class="col-xl-12 col-lg-12" *ngFor="let type of types">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title mb-0">{{type.label | titlecase}}</h4>
+              <hr>
             </div>
-            <div class="col-md-12" *ngFor="let type of types">
-              <h2>{{type.label | titlecase}}</h2>
-              <table class="table table-striped">
-                <thead>
-                  <th>Commerce</th>
-                  <th>Visité</th>
-                  <th>Medias</th>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let business of type.businesses">
-                    <td>{{business.name}}</td>
-                    <td>
-                      <input type="checkbox" [checked]="index[business.id].visited"
-                        (click)="toggleVisited(business.id)" />
-                    </td>
-                    <td>
-                      <ng-container *ngIf="index[business.id].visited">
-                        <span style="font-style: italic;cursor: pointer;"
-                          (click)="hiddenGalleries[business.id]=!hiddenGalleries[business.id]">
-                          <u>
-                            {{index[business.id].medias.length}} media(s) uploadé(s)
-                          </u>
-                        </span>
-                        <div *ngIf="!hiddenGalleries[business.id] && index[business.id].medias.length"
-                          class="col-md-12">
-                          <ng-image-slider [imagePopup]="true " #nav [images]="mediasByBusiness[business.id]"
-                            [infinite]="false" [autoSlide]="1" [imageSize]="{width: '25%', height: 200}" slideImage="1">
-                          </ng-image-slider>
+            
+            <div class="card-content">
+              <div class="card-body">
+                
+                <div class="media mb-1"  *ngFor="let business of type.businesses">
+                  
+                  <ul  class="list-group col-xs-12 col-lg-12" >
+                    <li class="list-group-item">
+                      <div class="media mb-1">
+                        <div class="mt-1">
+                          <input type="checkbox"  [checked]="index[business.id].visited" (click)="toggleVisited(business.id)" />
                         </div>
-                        <div>
-                          <input type="file" (change)="handleFileInput($event.target.files, business.id)" />
+                        <div  class="media-body">
+                          <h4 class="font-medium-1 mt-1 mb-0">{{business.name}}</h4>
+                          <p class="text-muted font-small-3">{{business.vicinity}}</p>
                         </div>
-                      </ng-container>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                      </div>
+                      
+                    </li>
+                    <li class="list-group-item"  *ngIf="index[business.id].visited">
+                      <div class="timeline-badge"><a title="" data-context="inverse" data-container="body" class="border-silc" data-original-title="block highlight"></a></div>
+                      <div class="timeline-card card border-grey border-lighten-2 col-12">
+                        <div class="card-header">
+                          <div class="text-center">
+                            <p class="mt-1"><i class="fa fa-file-image-o font-medium-4"></i></p>
+                            <h4>Gallerie commerce : {{business.name}}</h4>
+                            <p class="timeline-date" style="font-style: italic;cursor: pointer;" (click)="hiddenGalleries[business.id]=!hiddenGalleries[business.id]">{{index[business.id].medias.length}} media(s) uploadé(s)</p>
+                            <p><input type="file" (change)="handleFileInput($event.target.files, business.id)" /></p>
+                          </div>
+                        </div>
+                        <!-- Image grid -->
+                        <div class="card-content">
+                          <div class="card-body my-gallery"  >
+                            <div class="row">
+                              <div *ngIf="!hiddenGalleries[business.id] && index[business.id].medias.length" class="col-md-12">
+
+                                <ng-image-slider [imagePopup]="false" #nav [images]="mediasByBusiness[business.id]" (click)="removeconfirmText([business.id])"
+                                  [infinite]="false" [autoSlide]="1" [imageSize]="{width: '25%', height: 200}" slideImage="1">
+                                <i class="ft-trash-2 mr-2"></i>
+                                </ng-image-slider>
+                              </div>                                                           
+                            </div>                            
+                          </div>
+                          <!--/ Image grid -->
+                        </div>
+                        <!--/ PhotoSwipe -->
+                      </div>
+                    </li>
+                  </ul>
+                               
+                  
+                </div>                
+              </div>
             </div>
           </div>
         </div>
+
+
+
+        -----------------------------
+        
       </div>
     </div>
   </div>

@@ -44,4 +44,7 @@ export class UserService {
   public findAll() {
     return this.httpClient.get(`${environment.apiBase}/user`);
   }
+  public findById(id: number) {
+    return this.httpClient.get(`${environment.apiBase}/user/${id}`);
+  }
 }

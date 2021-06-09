@@ -135,12 +135,12 @@ export class CampaignEditComponent implements OnInit {
       campaign.businesses = this.foundBusinesses;
     }
     this.campaignService.save(campaign).subscribe((response: any) => {
-      this.toastr.success("Votre campagne a été sauvegardée avec succés !", "Très bien !", { positionClass: "toast-top-center" });
-      if (!this.id) {
+      this.toastr.success("Votre campagne a été sauvegardée avec succés !", "Très bien !", { positionClass: "toast-center-center" });
+      
         setTimeout(() => {
           this.router.navigate(["pages/campaigns"], { replaceUrl: true });
         });
-      }
+      
     });
   }
 
@@ -152,11 +152,12 @@ export class CampaignEditComponent implements OnInit {
     this.searchResult = {};
     const { types, towns } = this.form.value;
     for (const town of towns) {
+      this.searchResult[town.id] = {};
       const { lng: longitude, lat: latitude } = town;
       for (const businessType of types) {
         const type = businessType.mapCode;
         this.businessService.nearbySearch(latitude, longitude, type).subscribe((response: any) => {
-          this.searchResult[town.id] = {};
+        
           this.searchResult[town.id][businessType.id] = response.results;
           this.foundBusinesses.push.apply(this.foundBusinesses, response.results.map(r => {
             return <Business>{

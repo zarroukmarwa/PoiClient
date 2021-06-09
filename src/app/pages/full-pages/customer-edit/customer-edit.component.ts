@@ -14,7 +14,7 @@ import  User  from '../../../entities/user';
 })
 export class CustomerEditComponent implements OnInit {
 
-  public users: Array<Customer> = [];
+  public users: Array<User> = [];
   constructor(
     private route: ActivatedRoute,
     private toastr: ToastrService,
@@ -40,20 +40,24 @@ export class CustomerEditComponent implements OnInit {
       user: new FormControl(),
     });
    
+
+
     const calls: Observable<any>[] = [
       this.userservice.findAll()
     ];
     this.id && calls.push(this.customerService.findById(this.id));
-      forkJoin(calls).subscribe(([response2,response3]: Array<any>) => {
-        this.users = response2.data;
-        if (this.id) {
-        let {id, name,phone,adress,email,user} = response3.data;   
-        user = this.users.find(c => c.id === user.id);   
-        this.form.setValue({ id, name,phone,adress,email,user});
+    forkJoin(calls).subscribe(([response1, response5]: Array<any>) => {
+      this.users = response1.data;      
+      if (this.id) {
+        let { id, name,phone,adress,email,user} = response5.data;
+        console.log("++++++++++++++++++++");
+        console.log(response5.data)
 
+        user = this.users.find(c => c.id === user.id);
+        this.form.setValue({ id,name,phone,adress,email,user});
       }
     });
-
+   
 
   }
   public save() {

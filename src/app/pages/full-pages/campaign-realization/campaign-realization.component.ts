@@ -3,6 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Business } from 'app/entities/business';
 import { Campaign } from 'app/entities/campaign';
 import { CampaignService } from 'app/services/campaign.service';
+import { ToastrService } from 'ngx-toastr';
+import * as alertFunctions from '../../../shared/data/sweet-alerts';
+import swal from 'sweetalert2';
+
 import pptxgen from "pptxgenjs";
 
 @Component({
@@ -17,6 +21,7 @@ export class CampaignRealizationComponent implements OnInit {
   private campaignBusinesses: Array<any> = [];
 
   constructor(private campaignService: CampaignService,
+    private toastr: ToastrService,
     private route: ActivatedRoute,
     private router: Router) {
     this.route.params.subscribe((params) => {
@@ -49,6 +54,7 @@ export class CampaignRealizationComponent implements OnInit {
           const image = m.content, thumbImage = m.content;
           return { image, thumbImage };
         });
+
       }
       this.types = this.types.sort((a, b) => {
         var nameA = a.label.toUpperCase(); // ignore upper and lowercase
@@ -120,6 +126,32 @@ export class CampaignRealizationComponent implements OnInit {
       }
     }
     pres.writeFile();
+  }
+  public removeconfirmText(id) {
+    swal.fire({
+      title: 'Êtes-vous sûr?',
+      text: "Vous ne pourrez pas revenir en arrière !"+id,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Annuler',
+      confirmButtonText: 'Oui, supprimez-le!'
+    }).then((result) => {
+      if (result.value) {
+        this.removeImage();
+        swal.fire(
+          'Supprimé!',
+          'Votre fichier a été supprimé.',
+          'success'
+        )
+      }
+    })
+  }
+  
+  
+  public removeImage(){
+
   }
 
 }
