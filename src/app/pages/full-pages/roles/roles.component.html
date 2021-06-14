@@ -2,7 +2,7 @@
 <section id="ng-tables">
   <div class="row text-left">
     <div class="col-12">
-      <div class="content-header">Liste des Utilisateurs</div>
+      <div class="content-header">Liste des Rôles</div>
     </div>
   </div>
   <div class="row text-left">
@@ -11,25 +11,24 @@
         <div class="card-content">
           <div class="card-body">
           <div class="action-buttons mt-2 text-right">
-                <a class="btn btn-raised gradient-blackberry py-2 px-4 white mr-2"  (click)="addUser()">Nouveau Utilisateur</a>
-		   </div>
+                <a class="btn btn-raised gradient-blackberry py-2 px-4 white mr-2"  (click)="addRole()">Nouveau role</a>
+                <a class="btn btn-raised gradient-blackberry py-2 px-4 white mr-2"  (click)="affecteAction()">Affectation des Actions</a>
+		      </div>
              <table class="table table-striped" id="">
               <thead class=" text-primary">
                 <tr>
-                  <th>Avatar</th>
-                  <th>Nom Prénom</th>
+                  <th>ID</th>
                   <th>Role</th>
                   <th>Etat</th>
                   <th class=" text-center"></th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let user of users">
-                  <td></td>
-                  <td>{{user.fullName}}</td>
-                  <td>{{user.role}}</td>
-                  <td>{{user.etat}}</td>
-                  <td class=" text-center"><i class="fa fa-edit" style="cursor: pointer; margin-right:10px" aria-hidden="true" title="éditer" (click)="editUser(user.id)"></i> <i class="fa fa-trash" style="cursor: pointer;" aria-hidden="true" title="supprimer" (click)="removeUser(user.id)"></i></td>
+                <tr *ngFor="let role of roles">
+                  <td>{{role.roleId}}</td>
+                  <td>{{role.type}}</td>
+                  <td>{{role.etat}}</td>
+                  <td class=" text-center"><i class="fa fa-edit" style="cursor: pointer; margin-right:10px" aria-hidden="true" title="éditer" (click)="editRole(role.roleId)"></i> <i class="fa fa-trash" style="cursor: pointer;" aria-hidden="true" title="supprimer" (click)="removeRole(role.roleId)"></i></td>
                 </tr>
               </tbody>
             </table>          

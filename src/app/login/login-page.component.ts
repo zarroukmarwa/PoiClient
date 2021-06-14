@@ -2,7 +2,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../services/user.service';
 import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({

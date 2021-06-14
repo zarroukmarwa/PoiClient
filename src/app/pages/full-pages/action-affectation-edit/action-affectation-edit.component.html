@@ -1,0 +1,73 @@
+<section id="basic-form-layouts">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="content-header">Affectation des acces</div>
+    </div>
+  </div>
+  <div class="row text-left">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title" id="basic-layout-form">Action/Rôle</h4>
+          <p class="mb-0">Merci de remplir le formulaire soigneusement.</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form [formGroup]="form">
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-user"></i> Information Generale</h4>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="role">Role</label>
+                      <select id="role" name="role" class="form-control"  formControlName="role"> 
+                        <option selected value="0">-- Selectionner le role --</option>
+                        <option *ngFor="let role of rolesActif" [ngValue]="role">{{role.type}}</option>
+                      </select>
+
+                      
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="action">Action</label>
+                      <select id="action" name="action" class="form-control"  formControlName="action"> 
+                        <option selected value="0">-- Selectionner une action --</option>
+                        <option *ngFor="let action of actions" [ngValue]="action">{{action.titre}}</option>
+                        
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="etat">Etat</label>
+                        <select id="etat" name="etat" class="form-control"  formControlName="etat" > 
+                          <option value="Actif">Actif</option>
+                          <option value="Inactif">Inactif</option>
+                        </select>
+                      </div>
+                    </div>                 
+                </div>
+              </div>
+              
+              
+              <div class="form-actions">
+                <button type="button" class="btn btn-raised btn-raised btn-warning mr-1"  (click)="goBack()">
+                  <i class="ft-x"></i> Annuler
+                </button>
+                <button type="button" class="btn btn-raised btn-raised btn-primary"  (click)="save()">
+                  <i class="fa fa-check-square-o"></i> Enregistrer
+                </button>
+              </div>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</section>

@@ -15,6 +15,7 @@ export class CampaignsComponent implements OnInit{
   public count: number = 0;
   public pagesCount: number = 0;
   public pageSize: number = 5;
+  public page: number = 1;
 
 
   constructor(private router: Router, private campaignService: CampaignService) {

@@ -29,6 +29,7 @@ import { AuthService } from "./shared/auth/auth.service";
 import { AuthGuard } from "./shared/auth/auth-guard.service";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpInterceptorService } from "./services/http-interceptor.service";
+import { LoginPageComponent } from "./login/login-page.component";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -40,7 +41,8 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent],
+    
+    declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent,LoginPageComponent],
   imports: [
     BrowserAnimationsModule,
     StoreModule.forRoot({}),

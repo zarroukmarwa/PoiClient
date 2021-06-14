@@ -47,7 +47,9 @@ export class CustomerEditComponent implements OnInit {
     ];
     this.id && calls.push(this.customerService.findById(this.id));
     forkJoin(calls).subscribe(([response1, response5]: Array<any>) => {
-      this.users = response1.data;      
+      this.users = response1.data;   
+      console.log(response1.data)
+   
       if (this.id) {
         let { id, name,phone,adress,email,user} = response5.data;
         console.log("++++++++++++++++++++");

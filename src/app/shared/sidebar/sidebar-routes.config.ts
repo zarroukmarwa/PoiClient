@@ -3,11 +3,20 @@ import { RouteInfo } from './sidebar.metadata';
 //Sidebar menu Routes and data
 export const ROUTES: RouteInfo[] = [
 
-    { path: '/dashboard/dashboard1', title: 'Dashboard', icon: 'ft-home', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []},
-    { path: '/pages/campaigns', title: 'Campagnes', icon: 'fa fa-book', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-    { path: '/pages/products', title: 'Produits', icon: 'fa fa-list-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-    { path: '/pages/customers', title: 'Clients', icon: 'fa fa-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+    { path: '/dashboard/dashboard1', title: 'Tableau de bord', icon: 'ft-home', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []},
+    { path: '/pages/campaigns', title: 'Gestion des Campagnes', icon: 'fa fa-book', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+    { path: '/pages/products', title: 'Gestion des Produits', icon: 'fa fa-list-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+    { path: '/pages/customers', title: 'Gestion des Clients', icon: 'fa fa-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
     {
+        path: '', title: 'Administration', icon: 'ft-copy', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
+        submenu: [
+            { path: '/pages/actions', title: 'Gestion des actions', icon: 'ft-arrow-right', class: 'submenu-icon', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/pages/roles', title: 'Gestion des Roles', icon: 'ft-arrow-right', class: 'submenu-icon', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/pages/affectations', title: 'Affectation des Acces', icon: 'ft-arrow-right', class: 'submenu-icon', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/pages/users', title: 'Gestion des utilisateurs', icon: 'ft-arrow-right', class: 'submenu-icon', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+        ]
+    },
+    /*{
         path: '', title: 'Pages', icon: 'ft-copy', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
         submenu: [
             { path: '/pages/forgotpassword', title: 'Forgot Password', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
@@ -26,6 +35,6 @@ export const ROUTES: RouteInfo[] = [
             { path: '/pages/faq', title: 'FAQ', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/pages/kb', title: 'Knowledge Base', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
         ]
-    },
+    },*/
     
 ];

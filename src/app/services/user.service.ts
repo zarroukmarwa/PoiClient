@@ -47,4 +47,9 @@ export class UserService {
   public findById(id: number) {
     return this.httpClient.get(`${environment.apiBase}/user/${id}`);
   }
+  public findAndCount(criteria: any) {
+    return this.httpClient.post(`${environment.apiBase}/user/findAndCount`, criteria);
+  }
+
+  
 }

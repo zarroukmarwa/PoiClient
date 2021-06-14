@@ -23,6 +23,14 @@ import { CampaignsComponent } from './campaigns/campaigns.component';
 import { CampaignEditComponent } from './campaign-edit/campaign-edit.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
+import { RoleEditComponent } from './role-edit/role-edit.component';
+import { ActionAffectationComponent } from './action-affectation/action-affectation.component';
+
+
+import { RolesComponent } from './roles/roles.component';
+
+import { ActionsComponent } from './actions/actions.component';
+import { ActionEditComponent } from './action-edit/action-edit.component';
 
 import { CustomersComponent } from './customers/customers.component';
 import { UsersComponent } from './users/users.component';
@@ -32,6 +40,7 @@ import { TagInputModule } from 'ngx-chips';
 import { CampaignRealizationComponent } from './campaign-realization/campaign-realization.component';
 import { GoogleMap, GoogleMapsModule } from '@angular/google-maps';
 import { CustomerEditComponent } from './customer-edit/customer-edit.component';
+import { ActionAffectationEditComponent } from './action-affectation-edit/action-affectation-edit.component';
 
 @NgModule({
     imports: [
@@ -62,11 +71,17 @@ import { CustomerEditComponent } from './customer-edit/customer-edit.component';
         CampaignEditComponent,
         ProductsComponent,
         ProductEditComponent,
+        RolesComponent,
+        RoleEditComponent,
+        ActionsComponent,
+        ActionEditComponent,
+        ActionAffectationComponent,
         CustomersComponent,
         CustomerEditComponent,
         UsersComponent,
         CampaignStatePipe,
-        CampaignRealizationComponent
+        CampaignRealizationComponent,
+        ActionAffectationEditComponent
     ]
 })
 export class FullPagesModule { }

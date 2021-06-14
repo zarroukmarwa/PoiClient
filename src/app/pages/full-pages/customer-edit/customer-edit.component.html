@@ -26,7 +26,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="user">Responsable</label>
-                      <select id="usr" name="usr" class="form-control"  formControlName="usr"> 
+                      <select id="user" name="user" class="form-control"  formControlName="user"  [(ngModel)]="user.fullName"> 
                         <option selected value="0">-- Selectionner le responsbale --</option>
                         <option *ngFor="let user of users" [ngValue]="user">{{user.fullName}}</option>
                       </select>

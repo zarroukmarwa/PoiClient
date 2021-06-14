@@ -1,0 +1,62 @@
+<section id="basic-form-layouts">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="content-header">Rôle</div>
+    </div>
+  </div>
+  <div class="row text-left">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title" id="basic-layout-form">Nouveau Action</h4>
+          <p class="mb-0">Merci de remplir le formulaire soigneusement.</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form [formGroup]="form">
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-file-text"></i> Information Generale</h4>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="titre">Titre </label>
+                      <input type="text" id="titre" class="form-control" name="titre" formControlName="titre" >
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="module">Module</label>
+                      <select id="module" name="module" class="form-control"  formControlName="module" > 
+                        <option selected value="Aucun">Aucun</option>
+                        <option value="Campagnes">Campagnes</option>
+                        <option value="Produits">Produits</option>
+                        <option value="Clients">Clients</option>
+                        <option value="Role">Role</option>
+                        <option value="Action">Action</option>
+                        <option value="Utilisateurs">Utilisateurs</option>
+                      </select>
+                    </div>
+                  </div>                 
+                </div>
+                
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-raised btn-raised btn-warning mr-1"  (click)="goBack()">
+                  <i class="ft-x"></i> Annuler
+                </button>
+                <button type="button" class="btn btn-raised btn-raised btn-primary"  (click)="save()">
+                  <i class="fa fa-check-square-o"></i> Enregistrer
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</section>

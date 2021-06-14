@@ -17,12 +17,28 @@ import { CustomersComponent } from "./customers/customers.component";
 import { CampaignRealizationComponent } from './campaign-realization/campaign-realization.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { CustomerEditComponent } from './customer-edit/customer-edit.component';
+import { ActionsComponent } from './actions/actions.component';
+import { RolesComponent } from './roles/roles.component';
+import { RoleEditComponent } from './role-edit/role-edit.component';
+import { ActionEditComponent } from './action-edit/action-edit.component';
+import { ActionAffectationComponent } from './action-affectation/action-affectation.component';
+import { ActionAffectationEditComponent } from './action-affectation-edit/action-affectation-edit.component';
+import { UsersComponent } from './users/users.component';
 
 
 const routes: Routes = [
   {
     path: '',
     children: [
+      {
+        path: 'users',
+        component: UsersComponent,
+        data: {
+          title: 'user'
+        }
+      },
+      { path: "user", component: UsersComponent },
+      { path: "user/:id", component: UsersComponent },
       {
         path: 'campaigns',
         component: CampaignsComponent,
@@ -58,6 +74,28 @@ const routes: Routes = [
       }, 
       { path: "product", component: ProductEditComponent },
       { path: "product/:id", component: ProductEditComponent },
+      {
+        path: 'actions',
+        component: ActionsComponent,
+        data: {
+          title: 'actions'
+        }
+      }, 
+      { path: "affectations", component: ActionAffectationComponent },
+      { path: "affectation", component: ActionAffectationEditComponent },
+      { path: "affectation/:id", component: ActionAffectationEditComponent },
+
+      { path: "action", component: ActionEditComponent },
+      { path: "action/:id", component: ActionEditComponent },
+      {
+        path: 'roles',
+        component: RolesComponent,
+        data: {
+          title: 'roles'
+        }
+      }, 
+      { path: "role", component: RoleEditComponent },
+      { path: "role/:id", component: RoleEditComponent },
       {
         path: 'gallery',
         component: GalleryPageComponent,
